@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="import_time_record_view" model="ir.ui.view">
+    <field name="name">import.time.record.wizard.form</field>
+    <field name="model">costproduct.timerecordwizard</field>
+    <field name="arch" type="xml">
+      <form string="Importar Tiempos">
+        <group>
+          <field name="archivo_excel" filename="nombre_archivo"/>
+        </group>
+        <footer>
+          <button string="Importar" class="btn-primary"/>
+          <button string="Cancelar" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <act_window id="action_importar_tiempos"
+              name="Importar Tiempos"
+              res_model="import.time.record.wizard"
+              view_mode="form"
+              target="new"/>
+</odoo>

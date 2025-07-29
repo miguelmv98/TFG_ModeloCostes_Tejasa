@@ -1,1 +1,1 @@
-from . import ModelName
+from . import time_record, time_record_wizard
