@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cp.access_cp_time_record,access_cp_time_record,model_cp_time_record,base.group_user,1,1,1,1
+cp.access_cp_time_record_wizard_log,access_cp_time_record_wizard_log,model_cp_time_record_wizard_log,base.group_user,1,1,1,1
+cp.access_cp_time_record_report,access_cp_time_record_report,model_cp_time_record_report,base.group_user,1,1,1,1
+cp.access_cp_time_record_wizard,access_cp_time_record_wizard,model_cp_time_record_wizard,base.group_user,1,1,1,1
+cp.access_cp_components_report,access_cp_components_report,model_cp_components_report,base.group_user,1,1,1,1
+cp.access_cp_sold_products_report, access_cp_sold_products_report,model_cp_sold_products_report,base.group_user,1,1,1,1
+cp.access_cp_bought_products_report, access_cp_bought_products_report,model_cp_bought_products_report,base.group_user,1,1,1,1
+cp.access_cp_account_balance_report, access_cp_account_balance_report,model_cp_account_balance_report,base.group_user,1,1,1,1
+cp.access_cp_account_summary,access_cp_account_summary,model_cp_account_summary,base.group_user,1,1,1,1
+cp.access_cp_account_summary_kpi, access_cp_account_summary_kpi,model_cp_account_indicator,base.group_user,1,1,1,1
+cp.access_cp_account_amortisation_table_line, access_cp_account_amortisation_table_line,model_cp_account_amortisation_table_line,base.group_user,1,1,1,1
+cp.access_cp_inventory_report_header, access_cp_inventory_report_header,model_cp_inventory_report_header,base.group_user,1,1,1,1
+cp.access_cp_inventory_report_line, access_cp_inventory_report_line,model_cp_inventory_report_line,base.group_user,1,1,1,1
+cp.access_cp_inventory_report_wizard, access_cp_inventory_report_wizard,model_cp_inventory_report_wizard,base.group_user,1,1,1,1
+cp.access_cp_cost_model_header, access_cp_cost_model_header,model_cp_cost_model_header,base.group_user,1,1,1,1
+cp.access_cp_cost_model_line, access_cp_cost_model_line,model_cp_cost_model_line,base.group_user,1,1,1,1
+cp.access_cp_cost_model_wizard, access_cp_cost_model_wizard,model_cp_cost_model_wizard,base.group_user,1,1,1,1

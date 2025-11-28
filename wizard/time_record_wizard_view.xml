@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_time_record_view" model="ir.ui.view">
+        <field name="name">import.time.record.wizard.form</field>
+        <field name="model">cp.time.record.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importar Tiempos">
+                <group>
+                    <field name="excel_file" filename="file_name"/>
+                </group>
+
+                <group string="Rango de Fechas">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+
+                <group string="Opciones de Validación">
+                    <field name="check_parallel_work"/>
+                    <field name="check_existing_employee"/>
+                    <field name="check_closed_order"/>
+                </group>
+
+                <footer>
+                    <button name="importar_tiempos" string="Importar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

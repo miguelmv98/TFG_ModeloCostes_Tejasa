@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_cp_time_record" model="ir.actions.act_window">
+        <field name="name">Registros de tiempo</field>
+        <field name="res_model">cp.time.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registra los tiempos de montaje.
+            </p>
+        </field>
+    </record>
+
+    <record id="time_record_view_tree" model="ir.ui.view">
+        <field name="name">cp.timerecord.tree</field>
+        <field name="model">cp.time.record</field>
+        <field name="arch" type="xml">
+            <tree js_class="reorderable_list">
+                <header>
+                    <button name="action_importar_tiempos" string="Importar Tiempos de Montaje" type="object" display ="always" class="oe_stat_button"/>
+                </header>
+                <field name="production_order" optional="show"/>
+                <field name="employee" optional="show"/>
+                <field name="start_date" optional="show"/>
+                <field name="end_date" optional="show"/>
+                <field name="duration_hms" optional="show"/>
+                <field name="duration_hours" optional="hide" digits="[16,2]"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="time_record_view_form" model="ir.ui.view">
+        <field name="name">cp.timerecord.form</field>
+        <field name="model">cp.time.record</field>
+        <field name="arch" type="xml">
+            <form string ="Time Record">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee"/>
+                        </group>
+                        <group>
+                            <field name="production_order"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tiempos">
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                           <group>
+                               <field name="duration_hms"/>
+                           </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

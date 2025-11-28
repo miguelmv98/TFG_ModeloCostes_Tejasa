@@ -1,0 +1,70 @@
+<odoo>
+    <record id="view_timerecord_report_tree" model="ir.ui.view">
+        <field name="name">cp.time.record.report.tree</field>
+        <field name="model">cp.time.record.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" string="Reporte Tiempos por Empleado">
+                <field name="employee"/>
+                <field name="year"/>
+                <field name="month"/>
+                <field name="hours_month"/>
+                <field name="accumulated_hours"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_timerecord_report_pivot" model="ir.ui.view">
+        <field name="name">cp.time.record.report.pivot</field>
+        <field name="model">cp.time.record.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Tiempos por Empleado">
+                <field name="hours_month" type="measure"/>
+                <field name="employee" type="row"/>
+                <field name="year" type="col"/>
+                <field name="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_timerecord_report_graph" model="ir.ui.view">
+        <field name="name">cp.time.record.report.graph</field>
+        <field name="model">cp.time.record.report</field>
+        <field name="arch" type="xml">
+            <graph string="Evolución Acumulada de Horas" type="line">
+                <field name="accumulated_hours" type="measure"/>
+                <field name="month" type="col"/>
+            </graph>
+        </field>
+</record>
+
+     <!-- SEARCH: permite filtrar por año (y atajos: este año / año pasado) -->
+    <record id="view_timerecord_report_search" model="ir.ui.view">
+        <field name="name">cp.time.record.report.search</field>
+        <field name="model">cp.time.record.report</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Reporte de Tiempos">
+                <field name="employee"/>
+                <field name="year"/>
+                <field name="month"/>
+
+                <filter string="Este Año" name="anio_actual"
+                        domain="[('year', '=', context_today().year)]"/>
+                <filter string="Año Pasado" name="anio_pasado"
+                        domain="[('year', '=', context_today().year - 1)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Empleado" name="group_empleado" context="{'group_by': 'employee'}"/>
+                    <filter string="Año" name="group_year" context="{'group_by': 'year'}"/>
+                    <filter string="Mes" name="group_month" context="{'group_by': 'month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_cp_time_record_report" model="ir.actions.act_window">
+        <field name="name">Reporte de Tiempos</field>
+        <field name="res_model">cp.time.record.report</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="search_view_id" ref="view_timerecord_report_search"/>
+    </record>
+</odoo>

@@ -1,0 +1,105 @@
+[
+  {"name": "Transportes", "code": "TRANSPORTES", "account_codes": "624", "type": "standard", "function": "", "cost_hour": true},
+  {"name": "Reparaciones", "code": "REPARACIONES", "account_codes": "622", "type": "standard", "function": "", "cost_hour": true},
+
+  {"name": "Electricidad", "code": "ELECTRICIDAD", "account_codes": "628001", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Comunicaciones", "code": "COMUNICACIONES", "account_codes": "629010", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Agua", "code": "AGUA", "account_codes": "628004", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Basuras y Alcantarillado", "code": "BASURAS", "account_codes": "628005", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Embalaje", "code": "EMBALAJE", "account_codes": "628002", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Suministros", "code": "SUMINISTROS", "account_codes": "", "type": "function", "function": "ELECTRICIDAD + COMUNICACIONES + AGUA + BASURAS + EMBALAJE", "cost_hour": true},
+
+  {"name": "Trabajos de Mecanizado", "code": "TRABAJOS_MECANIZADO", "account_codes": "607", "type": "standard", "function": "", "cost_hour": true},
+
+  {"name": "Personal Oficina", "code": "PERSONAL_OFICINA", "account_codes": "64,629017,629003", "type": "standard", "function": "", "cost_hour": true},
+  {"name": "Personal Taller", "code": "PERSONAL_TALLER", "account_codes": "", "type": "standard", "function": "", "cost_hour": true},
+
+  {"name": "Gastos Diversos", "code": "GASTOS_DIVERSOS", "account_codes": "620000,627000,627003,629000,629002,629004,629005,629006,629007,629009,629011,629012,629014,629015,629016,629018,629019,629025,629027,629099", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Gastos Financieros", "code": "GASTOS_FINANCIEROS", "account_codes": "662008,668000,768000,678000,678003,778000,626000", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Arrendamientos y Cánones", "code": "ARRENDAMIENTOS", "account_codes": "621", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Tributos", "code": "TRIBUTOS", "account_codes": "63", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Gastos no Fabricación", "code": "GASTOS_NO_FABRICACION", "account_codes": "", "type": "function", "function": "GASTOS_DIVERSOS + GASTOS_FINANCIEROS + ARRENDAMIENTOS + TRIBUTOS", "cost_hour": true},
+
+  {"name": "Desarrollo", "code": "DESARROLLO", "account_codes": "201", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Desarrollo", "code": "AMORTIZACION_DESARROLLO", "account_codes": "2801", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Desarrollo", "code": "NETO_DESARROLLO", "account_codes": "", "type": "function", "function": "DESARROLLO + AMORTIZACION_DESARROLLO", "cost_hour": false},
+
+  {"name": "Investigación", "code": "INVESTIGACION", "account_codes": "200", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Investigación", "code": "AMORTIZACION_INVESTIGACION", "account_codes": "2800", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Investigación", "code": "NETO_INVESTIGACION", "account_codes": "", "type": "function", "function": "INVESTIGACION + AMORTIZACION_INVESTIGACION", "cost_hour": false},
+
+  {"name": "Patentes", "code": "PATENTES", "account_codes": "203", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Patentes", "code": "AMORTIZACION_PATENTES", "account_codes": "2803", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Patentes", "code": "NETO_PATENTES", "account_codes": "", "type": "function", "function": "PATENTES + AMORTIZACION_PATENTES", "cost_hour": false},
+
+  {"name": "Aplicaciones Informáticas", "code": "APP_INFORMATICAS", "account_codes": "206", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Aplicaciones Informáticas", "code": "AMORTIZACION_APP_INFORMATICAS", "account_codes": "2806", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Aplicaciones Informáticas", "code": "NETO_APP_INFORMATICAS", "account_codes": "", "type": "function", "function": "APP_INFORMATICAS + AMORTIZACION_APP_INFORMATICAS", "cost_hour": false},
+
+  {"name": "Terrenos", "code": "TERRENOS", "account_codes": "210", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Terrenos", "code": "AMORTIZACION_TERRENOS", "account_codes": "", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Terrenos", "code": "NETO_TERRENOS", "account_codes": "", "type": "function", "function": "TERRENOS + AMORTIZACION_TERRENOS", "cost_hour": false},
+
+  {"name": "Construcciones", "code": "CONSTRUCCIONES", "account_codes": "211", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Construcciones", "code": "AMORTIZACION_CONSTRUCCIONES", "account_codes": "2811", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Construcciones", "code": "NETO_CONSTRUCCIONES", "account_codes": "", "type": "function", "function": "CONSTRUCCIONES + AMORTIZACION_CONSTRUCCIONES", "cost_hour": false},
+
+  {"name": "Maquinaria", "code": "MAQUINARIA", "account_codes": "213", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Maquinaria", "code": "AMORTIZACION_MAQUINARIA", "account_codes": "2813", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Maquinaria", "code": "NETO_MAQUINARIA", "account_codes": "", "type": "function", "function": "MAQUINARIA + AMORTIZACION_MAQUINARIA", "cost_hour": false},
+
+  {"name": "Utillaje", "code": "UTILLAJE", "account_codes": "214", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Utillaje", "code": "AMORTIZACION_UTILLAJE", "account_codes": "2814", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Utillaje", "code": "NETO_UTILLAJE", "account_codes": "", "type": "function", "function": "UTILLAJE + AMORTIZACION_UTILLAJE", "cost_hour": false},
+
+  {"name": "Otras Instalaciones", "code": "OTRAS_INSTALACIONES", "account_codes": "215", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Otras Instalaciones", "code": "AMORTIZACION_OTRAS_INSTALACIONES", "account_codes": "2815", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Otras Instalaciones", "code": "NETO_OTRAS_INSTALACIONES", "account_codes": "", "type": "function", "function": "OTRAS_INSTALACIONES + AMORTIZACION_OTRAS_INSTALACIONES", "cost_hour": false},
+
+  {"name": "Mobiliario", "code": "MOBILIARIO", "account_codes": "216", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Mobiliario", "code": "AMORTIZACION_MOBILIARIO", "account_codes": "2816", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Mobiliario", "code": "NETO_MOBILIARIO", "account_codes": "", "type": "function", "function": "MOBILIARIO + AMORTIZACION_MOBILIARIO", "cost_hour": false},
+
+  {"name": "Proc. Información", "code": "PROC_INFORMACION", "account_codes": "217", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Proc. Información", "code": "AMORTIZACION_PROC_INFORMACION", "account_codes": "2817", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Proc. Información", "code": "NETO_PROC_INFORMACION", "account_codes": "", "type": "function", "function": "PROC_INFORMACION + AMORTIZACION_PROC_INFORMACION", "cost_hour": false},
+
+  {"name": "Elem. Transporte", "code": "ELEM_TRANSPORTE", "account_codes": "218", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Elem. Transporte", "code": "AMORTIZACION_ELEM_TRANSPORTE", "account_codes": "2818", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Elem. Transporte", "code": "NETO_ELEM_TRANSPORTE", "account_codes": "", "type": "function", "function": "ELEM_TRANSPORTE + AMORTIZACION_ELEM_TRANSPORTE", "cost_hour": false},
+
+  {"name": "Otro Inmovilizado Material", "code": "OTRO_INMOVILIZADO_MATERIAL", "account_codes": "219", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Otro Inmovilizado Material", "code": "AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "account_codes": "2819", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Neto Otro Inmovilizado Material", "code": "NETO_OTRO_INMOVILIZADO_MATERIAL", "account_codes": "", "type": "function", "function": "OTRO_INMOVILIZADO_MATERIAL + AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "cost_hour": false},
+
+  {"name": "Amortización Taller", "code": "AMORTIZACION_TALLER", "account_codes": "", "type": "function", "function": "0.2*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_MAQUINARIA + AMORTIZACION_UTILLAJE + AMORTIZACION_OTRAS_INSTALACIONES + AMORTIZACION_MOBILIARIO + AMORTIZACION_ELEM_TRANSPORTE + AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "cost_hour": false},
+  {"name": "Amortización Oficina", "code": "AMORTIZACION_OFICINA", "account_codes": "", "type": "function", "function": "AMORTIZACION_APP_INFORMATICAS + 0.8*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_PROC_INFORMACION", "cost_hour": false},
+
+  {"name": "Horas Efectivas Taller", "code": "HORAS_EFECTIVAS_TALLER", "account_codes": "", "type": "function", "function": "{horas_taller} * {nivel_actividad}", "cost_hour": false},
+  {"name": "Horas Efectivas Oficina", "code": "HORAS_EFECTIVAS_OFICINA", "account_codes": "", "type": "function", "function": "{horas_oficina} * {nivel_actividad}", "cost_hour": false},
+
+  {"name": "Horas Total Taller", "code": "HORAS_TOTAL_TALLER", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_TALLER * {trabajadores_taller}", "cost_hour": false},
+  {"name": "Horas Total Oficina", "code": "HORAS_TOTAL_OFICINA", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_OFICINA * {trabajadores_oficina}", "cost_hour": false},
+
+  {"name": "Amortización Hora Taller", "code": "AMORTIZACION_HORA_TALLER", "account_codes": "", "type": "function", "function": "AMORTIZACION_TALLER / HORAS_TOTAL_TALLER", "cost_hour": false},
+  {"name": "Amortización Hora Oficina", "code": "AMORTIZACION_HORA_OFICINA", "account_codes": "", "type": "function", "function": "AMORTIZACION_OFICINA / HORAS_TOTAL_OFICINA", "cost_hour": false},
+
+  {"name": "Ingresos Brutos Modelo", "code": "INGRESOS_BRUTOS_MODELO", "account_codes": "7", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Aprovisionamiento Modelo", "code": "APROVISIONAMIENTO_MODELO", "account_codes": "60", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Margen Bruto Materiales Modelo", "code": "MARGEN_BRUTO_MATERIALES_MODELO", "account_codes": "", "type": "function", "function": "INGRESOS_BRUTOS_MODELO + APROVISIONAMIENTO_MODELO", "cost_hour": false},
+  {"name": "Transportes y Aranceles (Compras) Modelo", "code": "TRANSPORTES_MODELO", "account_codes": "", "type": "function", "function": "TRANSPORTES", "cost_hour": false},
+  {"name": "Reparaciones Modelo", "code": "REPARACIONES_MODELO", "account_codes": "", "type": "function", "function": "REPARACIONES", "cost_hour": false},
+  {"name": "Suministros Modelo", "code": "SUMINISTROS_MODELO", "account_codes": "", "type": "function", "function": "SUMINISTROS", "cost_hour": false},
+  {"name": "Margen de Contribución Modelo", "code": "MARGEN_CONTRIBUCION_MODELO", "account_codes": "", "type": "function", "function": "MARGEN_BRUTO_MATERIALES_MODELO + TRANSPORTES_MODELO + REPARACIONES_MODELO + SUMINISTROS_MODELO", "cost_hour": false},
+  {"name": "Costes de Personal Taller Modelo", "code": "COSTES_PERSONAL_TALLER_MODELO", "account_codes": "", "type": "function", "function": "PERSONAL_TALLER", "cost_hour": false},
+  {"name": "Amortización Taller Modelo", "code": "AMORTIZACION_TALLER_MODELO", "account_codes": "", "type": "function", "function": "AMORTIZACION_TALLER", "cost_hour": false},
+  {"name": "Costes de Fabricación Modelo", "code": "COSTES_FABRICACION_MODELO", "account_codes": "", "type": "function", "function": "COSTES_PERSONAL_TALLER_MODELO + AMORTIZACION_TALLER_MODELO", "cost_hour": false},
+  {"name": "Margen neto industrial Modelo", "code": "MARGEN_NETO_INDUSTRIAL_MODELO", "account_codes": "", "type": "function", "function": "MARGEN_CONTRIBUCION_MODELO + COSTES_FABRICACION_MODELO", "cost_hour": false},
+  {"name": "Coste de personal Oficina Modelo", "code": "COSTE_PERSONAL_OFICINA_MODELO", "account_codes": "", "type": "function", "function": "PERSONAL_OFICINA", "cost_hour": false},
+  {"name": "Seguros Modelo", "code": "SEGUROS_MODELO", "account_codes": "625", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Amortización Oficina Modelo", "code": "AMORTIZACION_OFICINA_MODELO", "account_codes": "68", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Gastos Generales Modelo", "code": "GASTOS_GENERALES_MODELO", "account_codes": "", "type": "function", "function": "GASTOS_NO_FABRICACION", "cost_hour": false},
+  {"name": "Margen Neto Modelo", "code": "MARGEN_NETO_MODELO", "account_codes": "", "type": "function", "function": "MARGEN_NETO_INDUSTRIAL_MODELO + COSTE_PERSONAL_OFICINA_MODELO + SEGUROS_MODELO + AMORTIZACION_OFICINA_MODELO + GASTOS_GENERALES_MODELO", "cost_hour": false}
+
+
+]

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="view_cp_cost_model_header_tree" model="ir.ui.view">
+        <field name="name">cp.cost.model.header.tree</field>
+        <field name="model">cp.cost.model.header</field>
+        <field name="arch" type="xml">
+            <tree string="Modelo de Costes" create="false">
+                <header>
+                    <button name="action_generate_cost_model" string="Generar Modelo de Costes" type="object" display ="always" class="oe_stat_button"/>
+                </header>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+  <record id="view_cp_cost_model_header_form" model="ir.ui.view">
+    <field name="name">cp.cost.model.header.form</field>
+    <field name="model">cp.cost.model.header</field>
+    <field name="arch" type="xml">
+      <form string="Reporte de Inventario">
+        <div class="oe_chatter_full_width" style="padding:10px">
+          <sheet>
+              <group>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="create_date" readonly="1"/>
+              </group>
+          </sheet>
+            <div style="margin-top:10px">
+              <table style="width: 100%; border-collapse: collapse;" border="1">
+                <tr>
+                  <th style='font-weight:bold'><label for="gross_revenue"/></th>
+                  <th style='font-weight:bold'><label for="provisions"/></th>
+                  <th style='font-weight:bold'><label for="material_gross_margin"/></th>
+                  <th style='font-weight:bold'><label for="transport"/></th>
+                  <th style='font-weight:bold'><label for="repairs"/></th>
+                  <th style='font-weight:bold'><label for="supplies"/></th>
+                  <th style='font-weight:bold'><label for="contribution_margin"/></th>
+                  <th style='font-weight:bold'><label for="industrial_employee_cost"/></th>
+                  <th style='font-weight:bold'><label for="industrial_amortization"/></th>
+                  <th style='font-weight:bold'><label for="manufacturing_cost"/></th>
+                  <th style='font-weight:bold'><label for="industrial_net_margin"/></th>
+                  <th style='font-weight:bold'><label for="office_employee_cost"/></th>
+                  <th style='font-weight:bold'><label for="insurances"/></th>
+                  <th style='font-weight:bold'><label for="office_amortization"/></th>
+                  <th style='font-weight:bold'><label for="general_expenditures"/></th>
+                  <th style='font-weight:bold'><label for="global_net_margin"/></th>
+                </tr>
+                <tr>
+                  <td><field name="gross_revenue"/></td>
+                  <td><field name="provisions"/></td>
+                  <td><field name="material_gross_margin"/></td>
+                  <td><field name="transport"/></td>
+                  <td><field name="repairs"/></td>
+                  <td><field name="supplies"/></td>
+                  <td><field name="contribution_margin"/></td>
+                  <td><field name="industrial_employee_cost"/></td>
+                  <td><field name="industrial_amortization"/></td>
+                  <td><field name="manufacturing_cost"/></td>
+                  <td><field name="industrial_net_margin"/></td>
+                  <td><field name="office_employee_cost"/></td>
+                  <td><field name="insurances"/></td>
+                  <td><field name="office_amortization"/></td>
+                  <td><field name="general_expenditures"/></td>
+                  <td><field name="global_net_margin"/></td>
+                </tr>
+             </table>
+            </div>
+          <notebook>
+            <page string="Resumen de Costes">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" search="true" limit="10000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="gross_revenue" sum="Total"/>
+                    <field name="material_gross_margin" sum="Total"/>
+                    <field name="contribution_margin" sum="Total"/>
+                    <field name="industrial_net_margin" sum="Total"/>
+                    <field name="global_net_margin" sum="Total"/>
+                </tree>
+              </field>
+            </page>
+              <page string="Existencias">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" limit="10000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="product_initial_amount"/>
+                    <field name="product_initial_value"/>
+                    <field name="amount_produced"/>
+                    <field name="amount_bought"/>
+                    <field name="amount_sold"/>
+                    <field name="product_final_amount"/>
+                    <field name="product_final_value"/>
+                    <field name="amount_variation"/>
+                    <field name="value_variation"/>
+                    <field name="gross_revenue"/>
+                </tree>
+              </field>
+            </page>
+              <page string="Resumen Materiales">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" limit="1000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="gross_revenue" sum="Total"/>
+                    <field name="material_cost" sum="Total"/>
+                    <field name="variation_cost" sum="Total"/>
+                    <field name="external_work_cost" sum="Total"/>
+                    <field name="material_gross_margin" sum="Total"/>
+                </tree>
+              </field>
+            </page>
+              <page string="Resumen Contribución">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" limit="10000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="material_gross_margin" sum="Total"/>
+                    <field name="transport_cost" sum="Total"/>
+                    <field name="repair_cost" sum="Total"/>
+                    <field name="supplies_cost" sum="Total"/>
+                    <field name="contribution_margin" sum="Total"/>
+                </tree>
+              </field>
+            </page>
+              <page string="Resumen Industrial">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" limit="10000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="gross_revenue" sum="Total"/>
+                    <field name="contribution_margin" sum="Total"/>
+                    <field name="industrial_employee_cost" sum="Total"/>
+                    <field name="industrial_amortization_cost" sum="Total"/>
+                    <field name="industrial_net_margin" sum="Total"/>
+                </tree>
+              </field>
+            </page>
+              <page string="Resumen Comercial">
+              <field name="line_ids">
+                <tree editable="bottom" create ="false" delete="false" limit="10000">
+                    <field name="code_product"/>
+                    <field name="description_product"/>
+                    <field name="office_employee_cost" sum="Total"/>
+                    <field name="insurance_cost" sum="Total"/>
+                    <field name="office_amortization_cost" sum="Total"/>
+                    <field name="general_expenditures" sum="Total"/>
+                    <field name="research_and_development" sum="Total"/>
+                    <field name="global_net_margin" sum="Total"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+            </div>
+      </form>
+    </field>
+  </record>
+
+     <record id="action_cp_cost_model_header" model="ir.actions.act_window">
+        <field name="name">Modelo de Costes</field>
+        <field name="res_model">cp.cost.model.header</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Desde aquí puedes ver los modelos de costes generados o crear uno nuevo.</p>
+        </field>
+    </record>
+</odoo>

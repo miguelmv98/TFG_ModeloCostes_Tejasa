@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_report_bought_products_tree" model="ir.ui.view">
+        <field name="name">cp.bought.products.tree</field>
+        <field name="model">cp.bought.products.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" string="Reporte de Productos Comprados">
+                <field name="invoice_date"/>
+                <field name="invoice_number"/>
+                <field name="origin_document"/>
+                <field name="product_code"/>
+                <field name="product_name"/>
+                <field name="invoice_line_name"/>
+                <field name="amount"/>
+                <field name="total_signed"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_cp_bought_products_report" model="ir.actions.act_window">
+        <field name="name">Reporte de Productos Comprados</field>
+        <field name="res_model">cp.bought.products.report</field>
+        <field name="view_mode">tree,pivot,graph</field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>    <!-- Tree View -->
+    <record id="view_report_invoice_summary_tree" model="ir.ui.view">
+        <field name="name">cp.account.balance.tree</field>
+        <field name="model">cp.account.balance.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" string="Reporte Balance de cuentas">
+                <field name="base_account_code"/>
+                <field name="account_name"/>
+                <field name="fiscal_year"/>
+                <field name="starting_balance"/>
+                <field name="debit"/>
+                <field name="earnings"/>
+                <field name="interval_balance"/>
+                <field name="final_balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_cp_account_balance_report" model="ir.actions.act_window">
+        <field name="name">Reporte Balance de cuentas</field>
+        <field name="res_model">cp.account.balance.report</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

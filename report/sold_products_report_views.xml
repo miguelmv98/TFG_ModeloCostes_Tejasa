@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sold_products_report_tree" model="ir.ui.view">
+        <field name="name">cp.sold.products.report.tree</field>
+        <field name="model">cp.sold.products.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" string="Reporte de Productos Vendidos">
+                <field name="origin_document"/>
+                <field name="delivery_notes"/>
+                <field name="invoice_number"/>
+                <field name="invoice_line_amount"/>
+                <field name="product_code"/>
+                <field name="product_name"/>
+                <field name="invoice_line_name"/>
+                <field name="total_signed"/>
+                <field name="invoice_date"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="view_sold_products_report_pivot" model="ir.ui.view">
+        <field name="name">cp.sold.products.report.pivot</field>
+        <field name="model">cp.sold.products.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Productos Vendidos">
+                <field name="invoice_line_amount" type="measure"/>
+                <field name="total_signed" type="measure"/>
+                <field name="invoice_line_name" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_sold_products_report" model="ir.actions.act_window">
+        <field name="name">Reporte de Productos Vendidos</field>
+        <field name="res_model">cp.sold.products.report</field>
+        <field name="view_mode">tree,pivot,graph</field>
+    </record>
+</odoo>

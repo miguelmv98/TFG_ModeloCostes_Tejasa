@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_root" name="Modelo de Costes">
+        <menuitem id="assembly_times_menu" name="Gestion de Tiempos" sequence="1">
+            <menuitem id="assembly_time_record_menu" action="action_cp_time_record"/>
+            <menuitem id="log_assembly_time_record_wizard_menu" action="action_cp_time_record_wizard_log"/>
+            <menuitem id="assembly_time_record_report_menu" action="action_cp_time_record_report"/>
+        </menuitem>
+        <menuitem id="account_balance_menu" name="Contabilidad" sequence="2">
+            <menuitem id="account_balance_report_menu" action="action_cp_account_balance_report"/>
+            <menuitem id="account_summary_report_menu" action="action_cp_account_summary_report"/>
+        </menuitem>
+        <menuitem id="components_menu" name="Materiales" sequence="3">
+            <menuitem id="components_list_report_menu" action="action_cp_components_report"/>
+        </menuitem>
+        <menuitem id="inventory_menu" name="Inventario" sequence="4">
+            <menuitem id="inventory_report_menu" action="action_cp_inventory_report_header"/>
+        </menuitem>
+         <menuitem id="sold_products_menu" name="Ventas" sequence="5">
+            <menuitem id="sold_products_report_menu" action="action_sold_products_report"/>
+        </menuitem>
+        <menuitem id="bought_products_menu" name="Compras" sequence="6">
+            <menuitem id="bought_products_report_menu" action="action_cp_bought_products_report"/>
+        </menuitem>
+        <menuitem id="cost_model_menu" name="Modelo de Costes" sequence="7">
+            <menuitem id="cost_model_list_menu" action="action_cp_cost_model_header"/>
+        </menuitem>
+    </menuitem>
+</odoo>

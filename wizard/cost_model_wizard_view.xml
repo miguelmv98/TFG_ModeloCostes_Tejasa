@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_cost_model_wizard_form" model="ir.ui.view">
+    <field name="name">cp.cost.model.wizard.form</field>
+    <field name="model">cp.cost.model.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Generar reporte de inventario">
+        <group>
+          <field name="star_date"/>
+          <field name="end_date"/>
+          <field name="description"/>
+        </group>
+        <separator string="Seleccionar informes previos"/>
+        <group>
+          <field name="account_report" options="{'no_create': True}"/> <!--domain="[('fiscal_year', '=', 'fecha_fin.year')]"-->
+          <field name="inventory_report" options="{'no_create': True}"/> <!--domain="[('fecha_inicio','=','fecha_inicio'),('fecha_fin','=','fecha_fin')]"-->
+        </group>
+        <footer>
+          <button string="Generar" type="object" name="action_confirm_generate_cost_model" class="btn-primary"/>
+          <button string="Cancelar" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <act_window
+    id="action_cost_model_wizard"
+    name="Generar Reporte Inventario"
+    res_model="cp.cost.model.wizard"
+    view_mode="form"
+    target="new"/>
+</odoo>

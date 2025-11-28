@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_cp_time_record_wizard_log" model="ir.actions.act_window">
+        <field name="name">Log Errores Importación</field>
+        <field name="res_model">cp.time.record.wizard.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registra los tiempos de montaje.
+            </p>
+        </field>
+    </record>
+
+    <record id="log_time_record_wizard_view_tree" model="ir.ui.view">
+        <field name="name">cp.time.record.wizard.log.tree</field>
+        <field name="model">cp.time.record.wizard.log</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="file_name"/>
+                <field name="employee"/>
+                <field name="production_order"/>
+                <field name="start_date"/>
+                <field name="error"/>
+                <field name="reviewed"/>
+                <field name="create_date" string="Fecha de registro" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

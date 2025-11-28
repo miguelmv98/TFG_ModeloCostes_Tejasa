@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_costs_informe_tree" model="ir.ui.view">
+        <field name="name">costs.informe.tree</field>
+        <field name="model">cp.account.summary</field>
+        <field name="arch" type="xml">
+            <tree string="Reporte Balance de cuentas">
+                <field name="name"/>
+                <field name="fiscal_year"/>
+                <field name="industrial_employee"/>
+                <field name="industrial_hours"/>
+                <field name="office_employee"/>
+                <field name="office_hours"/>
+                <field name="effective_hours"/>
+                <field name="activity_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_costs_informe_form" model="ir.ui.view">
+        <field name="name">costs.informe.form</field>
+        <field name="model">cp.account.summary</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_calcular_indicadores"
+                            string="Calcular Indicadores"
+                            type="object"
+                            class="btn_primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="fiscal_year"/>
+                        <field name="industrial_employee"/>
+                        <field name="office_employee"/>
+                        <field name="industrial_hours"/>
+                        <field name="office_hours"/>
+                        <field name="effective_hours"/>
+                        <field name="activity_level"/>
+                    </group>
+                    <notebook>
+                        <page string="Indicadores Generales">
+                            <field name="general_indicator_ids">
+                                <tree editable="false">
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                    <field name="cost_hour_value"/>
+                                </tree>
+                            </field>
+                        </page>
+                         <page string="Indicadores Amortizacion">
+                            <field name="table_line_ids">
+                                <tree editable="false">
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                    <field name="amortization"/>
+                                    <field name="net_value"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Indicadores Modelo">
+                            <field name="model_indicator_ids">
+                                <tree editable="false">
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                         <page string="Indicadores Horas">
+                            <field name="hours_indicator_ids">
+                                <tree editable="false">
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
