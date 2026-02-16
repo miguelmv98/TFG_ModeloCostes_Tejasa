@@ -45,7 +45,7 @@
                             <field name="general_indicator_ids">
                                 <tree editable="false">
                                     <field name="name"/>
-                                    <field name="value"/>
+                                    <field name="total_value"/>
                                     <field name="cost_hour_value"/>
                                 </tree>
                             </field>
@@ -64,7 +64,7 @@
                             <field name="model_indicator_ids">
                                 <tree editable="false">
                                     <field name="name"/>
-                                    <field name="value"/>
+                                    <field name="total_value"/>
                                 </tree>
                             </field>
                         </page>
@@ -72,7 +72,16 @@
                             <field name="hours_indicator_ids">
                                 <tree editable="false">
                                     <field name="name"/>
-                                    <field name="value"/>
+                                    <field name="total_value"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Configuración Indicadores">
+                            <field name="indicator_ids">
+                                <tree editable="false">
+                                    <field name="name"/>
+                                    <field name="total_value"/>
+                                    <field name="cost_hour_value"/>
                                 </tree>
                             </field>
                         </page>

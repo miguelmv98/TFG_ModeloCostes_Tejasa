@@ -31,22 +31,22 @@ class CostModelWizard(models.Model):
 
         query = """ 
         SELECT
-    MAX(CASE WHEN code = 'INGRESOS_BRUTOS_MODELO' THEN value END) AS gross_revenue,
-    MAX(CASE WHEN code = 'APROVISIONAMIENTO_MODELO' THEN value END) AS provisions,
-    MAX(CASE WHEN code = 'MARGEN_BRUTO_MATERIALES_MODELO' THEN value END) AS material_gross_margin,
-    MAX(CASE WHEN code = 'TRANSPORTES_MODELO' THEN value END) AS transport,
-    MAX(CASE WHEN code = 'REPARACIONES_MODELO' THEN value END) AS repairs,
-    MAX(CASE WHEN code = 'SUMINISTROS_MODELO' THEN value END) AS supplies,
-    MAX(CASE WHEN code = 'MARGEN_CONTRIBUCION_MODELO' THEN value END) AS contribution_margin,
-    MAX(CASE WHEN code = 'COSTES_PERSONAL_TALLER_MODELO' THEN value END) AS industrial_employee_cost,
-    MAX(CASE WHEN code = 'AMORTIZACION_TALLER_MODELO' THEN value END) AS industrial_amortization,
-    MAX(CASE WHEN code = 'COSTES_FABRICACION_MODELO' THEN value END) AS manufacturing_cost,
-    MAX(CASE WHEN code = 'MARGEN_NETO_INDUSTRIAL_MODELO' THEN value END) AS industrial_net_margin,
-    MAX(CASE WHEN code = 'COSTE_PERSONAL_OFICINA_MODELO' THEN value END) AS office_employee_cost,
-    MAX(CASE WHEN code = 'SEGUROS_MODELO' THEN value END) AS insurances,
-    MAX(CASE WHEN code = 'AMORTIZACION_OFICINA_MODELO' THEN value END) AS office_amortization,
-    MAX(CASE WHEN code = 'GASTOS_GENERALES_MODELO' THEN value END) AS general_expenditures,
-    MAX(CASE WHEN code = 'MARGEN_NETO_MODELO' THEN value END) AS global_net_margin
+    MAX(CASE WHEN code = 'INGRESOS_BRUTOS_MODELO' THEN total_value END) AS gross_revenue,
+    MAX(CASE WHEN code = 'APROVISIONAMIENTO_MODELO' THEN total_value END) AS provisions,
+    MAX(CASE WHEN code = 'MARGEN_BRUTO_MATERIALES_MODELO' THEN total_value END) AS material_gross_margin,
+    MAX(CASE WHEN code = 'TRANSPORTES_MODELO' THEN total_value END) AS transport,
+    MAX(CASE WHEN code = 'REPARACIONES_MODELO' THEN total_value END) AS repairs,
+    MAX(CASE WHEN code = 'SUMINISTROS_MODELO' THEN total_value END) AS supplies,
+    MAX(CASE WHEN code = 'MARGEN_CONTRIBUCION_MODELO' THEN total_value END) AS contribution_margin,
+    MAX(CASE WHEN code = 'COSTES_PERSONAL_TALLER_MODELO' THEN total_value END) AS industrial_employee_cost,
+    MAX(CASE WHEN code = 'AMORTIZACION_TALLER_MODELO' THEN total_value END) AS industrial_amortization,
+    MAX(CASE WHEN code = 'COSTES_FABRICACION_MODELO' THEN total_value END) AS manufacturing_cost,
+    MAX(CASE WHEN code = 'MARGEN_NETO_INDUSTRIAL_MODELO' THEN total_value END) AS industrial_net_margin,
+    MAX(CASE WHEN code = 'COSTE_PERSONAL_OFICINA_MODELO' THEN total_value END) AS office_employee_cost,
+    MAX(CASE WHEN code = 'SEGUROS_MODELO' THEN total_value END) AS insurances,
+    MAX(CASE WHEN code = 'AMORTIZACION_OFICINA_MODELO' THEN total_value END) AS office_amortization,
+    MAX(CASE WHEN code = 'GASTOS_GENERALES_MODELO' THEN total_value END) AS general_expenditures,
+    MAX(CASE WHEN code = 'MARGEN_NETO_MODELO' THEN total_value END) AS global_net_margin
 FROM cp_account_indicator
 WHERE report_id = %(id_contabilidad)s;
         """
@@ -83,9 +83,9 @@ WHERE report_id = %(id_contabilidad)s;
         WITH unit_times AS (
     SELECT 
         pt.default_code,
-        SUM(EXTRACT(EPOCH FROM (ct.start_date - ct.end_date)) / 3600.0) AS totalhoras,
+        SUM(EXTRACT(EPOCH FROM (ct.end_date - ct.start_date)) / 3600.0) AS totalhoras,
         SUM(mp.product_qty) AS totalpiezas,
-        (SUM(EXTRACT(EPOCH FROM (ct.start_date - ct.end_date)) / 3600.0)
+        (SUM(EXTRACT(EPOCH FROM (ct.end_date - ct.start_date)) / 3600.0)
             / NULLIF(SUM(mp.product_qty), 0)) AS horasunitarias
     FROM product_template pt
     INNER JOIN product_product pp ON pp.product_tmpl_id = pt.id
@@ -141,13 +141,14 @@ costes_indirectos AS (
         (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'TRANSPORTES' AND report_id=%(id_contabilidad)s) AS transportes,
         (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'REPARACIONES' AND report_id=%(id_contabilidad)s) AS reparaciones,
         (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'SUMINISTROS' AND report_id=%(id_contabilidad)s) AS suministros,
-        (SELECT value FROM cp_account_indicator WHERE code = 'PERSONAL_TALLER' AND report_id=%(id_contabilidad)s) AS personal_taller,
-        (SELECT value FROM cp_account_indicator WHERE code = 'AMORTIZACION_TALLER' AND report_id=%(id_contabilidad)s) AS amortizacion_taller,
-        (SELECT value FROM cp_account_indicator WHERE code = 'PERSONAL_OFICINA' AND report_id=%(id_contabilidad)s) AS personal_oficina,
-        (SELECT value FROM cp_account_indicator WHERE code = 'SEGUROS_MODELO' AND report_id=%(id_contabilidad)s) AS seguros,
-        (SELECT value FROM cp_account_indicator WHERE code = 'AMORTIZACION_OFICINA' AND report_id=%(id_contabilidad)s) AS amortizacion_oficina,
-        (SELECT value FROM cp_account_indicator WHERE code = 'GASTOS_NO_FABRICACION' AND report_id=%(id_contabilidad)s) AS gastos_no_fabricacion,
-        (SELECT SUM(value) FROM cp_account_indicator WHERE code IN ('AMORTIZACION_DESARROLLO','AMORTIZACION_INVESTIGACION','AMORTIZACION_PATENTES','AMORTIZACION_APP_INFORMATICAS') AND report_id=%(id_contabilidad)s) AS I_D
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'PERSONAL_TALLER' AND report_id=%(id_contabilidad)s) AS personal_taller,
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'AMORTIZACION_TALLER' AND report_id=%(id_contabilidad)s) AS amortizacion_taller,
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'PERSONAL_OFICINA' AND report_id=%(id_contabilidad)s) AS personal_oficina,
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'SEGUROS_MODELO' AND report_id=%(id_contabilidad)s) AS seguros,
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'AMORTIZACION_OFICINA' AND report_id=%(id_contabilidad)s) AS amortizacion_oficina,
+        (SELECT cost_hour_value FROM cp_account_indicator WHERE code = 'GASTOS_NO_FABRICACION' AND report_id=%(id_contabilidad)s) AS gastos_no_fabricacion,
+        (SELECT SUM(total_value) FROM cp_account_indicator WHERE code IN ('AMORTIZACION_DESARROLLO','AMORTIZACION_INVESTIGACION','AMORTIZACION_PATENTES','AMORTIZACION_APP_INFORMATICAS') AND report_id=%(id_contabilidad)s) AS I_D,
+        (SELECT SUM(total_value)*(100-(SELECT activity_level FROM cp_account_summary WHERE id=%(id_contabilidad)s))/100 FROM cp_account_indicator WHERE code IN ('PERSONAL_TALLER','AMORTIZACION_TALLER','PERSONAL_OFICINA','SEGUROS_MODELO','AMORTIZACION_OFICINA','AMORTIZACION_OFICINA','GASTOS_NO_FABRICACION')AND report_id=%(id_contabilidad)s) AS subactividad
 ),
 
 base AS (
@@ -179,14 +180,17 @@ base AS (
         ut.horasunitarias * ci.reparaciones * ut.totalpiezas AS repair_cost,
         ut.horasunitarias * ci.suministros  * ut.totalpiezas AS supplies_cost,
 
-        (ci.personal_taller / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS industrial_employee_cost,
-        (ci.amortizacion_taller / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS industrial_amortization_cost,
+        ut.horasunitarias * ci.personal_taller * ut.totalpiezas AS industrial_employee_cost,
+        ut.horasunitarias * ci.amortizacion_taller * ut.totalpiezas AS industrial_amortization_cost,
 
-        (ci.personal_oficina / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS office_employee_cost,
-        (ci.seguros / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS insurance_cost,
-        (ci.amortizacion_oficina / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS office_amortization_cost,
-        (ci.gastos_no_fabricacion / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS general_expenditures,
+        ut.horasunitarias * ci.personal_oficina * ut.totalpiezas AS office_employee_cost,
+        ut.horasunitarias * ci.seguros * ut.totalpiezas  AS insurance_cost,
+        ut.horasunitarias * ci.amortizacion_oficina * ut.totalpiezas AS office_amortization_cost,
+        ut.horasunitarias * ci.gastos_no_fabricacion * ut.totalpiezas AS general_expenditures,
+        (ci.subactividad / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS subactivity,
         (ci.I_D / (SELECT SUM(totalhoras) FROM unit_times)) * ut.totalhoras AS research_and_development,
+            
+        
             
         0 AS reference_time,
         ut.totalhoras AS total_time
@@ -207,15 +211,16 @@ step1 AS (
     SELECT 
         base.*,
         COALESCE(base.gross_revenue,0) 
-        - COALESCE(base.material_cost,0) 
-        - COALESCE(base.variation_cost,0) 
+        + COALESCE(base.material_cost,0) 
+        + COALESCE(base.variation_cost,0) 
         + COALESCE(base.external_work_cost,0) AS material_gross_margin
     FROM base
 ),
 step1_5 AS (
     SELECT 
         *,
-        COALESCE(transport_cost,0) 
+        COALESCE(material_gross_margin)
+        + COALESCE(transport_cost,0) 
         + COALESCE(repair_cost,0) 
         + COALESCE(supplies_cost,0) AS contribution_margin
     FROM step1
@@ -224,12 +229,15 @@ step1_5 AS (
 step2 AS (
     SELECT 
         *,
-        COALESCE(contribution_margin,0) 
+        + COALESCE(material_cost,0) 
+        + COALESCE(base.external_work_cost,0)
+        + COALESCE(transport_cost,0) 
+        + COALESCE(repair_cost,0) 
+        + COALESCE(supplies_cost,0)
         + COALESCE(industrial_employee_cost,0) 
         + COALESCE(industrial_amortization_cost,0) AS manufacturing_cost,
 
-        COALESCE(gross_revenue,0) 
-        + COALESCE(contribution_margin,0) 
+         COALESCE(contribution_margin,0) 
         + COALESCE(industrial_employee_cost,0) 
         + COALESCE(industrial_amortization_cost,0) AS industrial_net_margin
     FROM step1_5
@@ -243,7 +251,8 @@ step3 AS (
         + COALESCE(insurance_cost,0) 
         + COALESCE(office_amortization_cost,0) 
         + COALESCE(general_expenditures,0) 
-        + COALESCE(research_and_development,0) AS global_net_margin
+        + COALESCE(subactivity,0) 
+        + COALESCE(research_and_development,0)  AS global_net_margin
     FROM step2
 )
 
@@ -284,6 +293,7 @@ SELECT
     insurance_cost,
     office_amortization_cost,
     general_expenditures,
+    subactivity,
     research_and_development,
     global_net_margin,
     reference_time,
@@ -343,6 +353,7 @@ FROM step3
                 'office_amortization_cost': row['office_amortization_cost'],
                 'general_expenditures': row['general_expenditures'],
                 'research_and_development': row['research_and_development'],
+                'subactivity': row['subactivity'],
                 'global_net_margin': row['global_net_margin'],
 
                 'reference_time': row['reference_time'],

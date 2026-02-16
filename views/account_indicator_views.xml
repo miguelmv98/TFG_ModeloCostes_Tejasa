@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_indicator_form_view" model="ir.ui.view">
+            <field name="name">cp.account.indicator.form</field>
+            <field name="model">cp.account.indicator</field>
+            <field name="arch" type="xml">
+                <form string="Indicador">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="value"/>
+                            <field name="total_value" readonly="1"/>
+                            <field name="cost_hour_value" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Ajustes manuales">
+                                 <field name="account_indicators_manual_ids">
+                                    <tree editable="bottom">
+                                        <field name="description"/>
+                                        <field name="value"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_indicator_act_window" model="ir.actions.act_window">
+            <field name="name">ModelTitle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cp.account.indicator</field>
+            <field name="view_mode">form,tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new ModelTitle.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

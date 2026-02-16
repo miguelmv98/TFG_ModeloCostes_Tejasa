@@ -8,7 +8,7 @@
                 <field name="origin_document"/>
                 <field name="delivery_notes"/>
                 <field name="invoice_number"/>
-                <field name="invoice_line_amount"/>
+                <field name="invoice_line_amount" sum="Total"/>
                 <field name="product_code"/>
                 <field name="product_name"/>
                 <field name="invoice_line_name"/>

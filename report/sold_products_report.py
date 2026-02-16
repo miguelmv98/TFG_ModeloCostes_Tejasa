@@ -25,13 +25,15 @@ class SoldProductsReport(models.Model):
                     ai.origin AS origin_document,
                     sp.name AS delivery_notes,
                     ai.invoice_number AS invoice_number,
-                    aml.quantity AS invoice_line_amount,
+                    case when ai.invoice_number LIKE 'R%'
+                        then - aml.quantity else aml.quantity 
+                    END AS invoice_line_amount,
                     pp.default_code AS product_code,
                     pt.name->>'es_ES' AS product_name,
                     aml.name AS invoice_line_name,
                     ai.amount_total_signed AS total_signed,
                     ai.date_invoice AS invoice_date,
-                    ROW_NUMBER() OVER (PARTITION BY ai.id ORDER BY aml.id) AS rn
+                    ROW_NUMBER() OVER (PARTITION BY ai.id, pp.default_code ORDER BY aml.id) AS rn
                 FROM account_invoice ai
                     LEFT JOIN stock_picking sp ON sp.origin = ai.origin
                     LEFT JOIN account_move_line aml ON aml.invoice_id = ai.id 

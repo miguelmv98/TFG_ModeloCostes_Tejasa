@@ -22,14 +22,16 @@ class BoughtProductsReport(models.Model):
         CREATE OR REPLACE VIEW cp_bought_products_report AS (
         WITH ranked AS (
             SELECT 
-                aml.quantity AS amount,
+                case when ai.invoice_number LIKE 'R%'
+                        then - aml.quantity else aml.quantity 
+                END AS amount,
                 ai.origin AS origin_document,
                 pp.default_code AS product_code,
                 pt.name->>'es_ES' AS product_name,
                 aml.name AS invoice_line_name,
                 ai.date_invoice AS invoice_date,
                 ai.invoice_number AS invoice_number,
-                CASE WHEN ROW_NUMBER() OVER (PARTITION BY ai.id ORDER BY aml.id) = 1 
+                CASE WHEN ROW_NUMBER() OVER (PARTITION BY ai.id, pp.default_code ORDER BY aml.id) = 1 
                      THEN ai.amount_total_signed 
                      ELSE NULL 
                 END AS total_signed,

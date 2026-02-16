@@ -72,14 +72,14 @@
   {"name": "Amortización Otro Inmovilizado Material", "code": "AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "account_codes": "2819", "type": "standard", "function": "", "cost_hour": false},
   {"name": "Neto Otro Inmovilizado Material", "code": "NETO_OTRO_INMOVILIZADO_MATERIAL", "account_codes": "", "type": "function", "function": "OTRO_INMOVILIZADO_MATERIAL + AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "cost_hour": false},
 
-  {"name": "Amortización Taller", "code": "AMORTIZACION_TALLER", "account_codes": "", "type": "function", "function": "0.2*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_MAQUINARIA + AMORTIZACION_UTILLAJE + AMORTIZACION_OTRAS_INSTALACIONES + AMORTIZACION_MOBILIARIO + AMORTIZACION_ELEM_TRANSPORTE + AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "cost_hour": false},
-  {"name": "Amortización Oficina", "code": "AMORTIZACION_OFICINA", "account_codes": "", "type": "function", "function": "AMORTIZACION_APP_INFORMATICAS + 0.8*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_PROC_INFORMACION", "cost_hour": false},
+  {"name": "Amortización Taller", "code": "AMORTIZACION_TALLER", "account_codes": "", "type": "function", "function": "0.2*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_MAQUINARIA + AMORTIZACION_UTILLAJE + AMORTIZACION_OTRAS_INSTALACIONES + AMORTIZACION_MOBILIARIO + AMORTIZACION_ELEM_TRANSPORTE + AMORTIZACION_OTRO_INMOVILIZADO_MATERIAL", "cost_hour": true},
+  {"name": "Amortización Oficina", "code": "AMORTIZACION_OFICINA", "account_codes": "", "type": "function", "function": "AMORTIZACION_APP_INFORMATICAS + 0.8*AMORTIZACION_CONSTRUCCIONES + AMORTIZACION_PROC_INFORMACION", "cost_hour": true},
 
-  {"name": "Horas Efectivas Taller", "code": "HORAS_EFECTIVAS_TALLER", "account_codes": "", "type": "function", "function": "{horas_taller} * {nivel_actividad}", "cost_hour": false},
-  {"name": "Horas Efectivas Oficina", "code": "HORAS_EFECTIVAS_OFICINA", "account_codes": "", "type": "function", "function": "{horas_oficina} * {nivel_actividad}", "cost_hour": false},
+  {"name": "Horas Efectivas Taller", "code": "HORAS_EFECTIVAS_TALLER", "account_codes": "", "type": "function", "function": "({industrial_hours} * {activity_level})/100", "cost_hour": false},
+  {"name": "Horas Efectivas Oficina", "code": "HORAS_EFECTIVAS_OFICINA", "account_codes": "", "type": "function", "function": "({office_hours} * {activity_level})/100", "cost_hour": false},
 
-  {"name": "Horas Total Taller", "code": "HORAS_TOTAL_TALLER", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_TALLER * {trabajadores_taller}", "cost_hour": false},
-  {"name": "Horas Total Oficina", "code": "HORAS_TOTAL_OFICINA", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_OFICINA * {trabajadores_oficina}", "cost_hour": false},
+  {"name": "Horas Total Taller", "code": "HORAS_TOTAL_TALLER", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_TALLER * {industrial_employee}", "cost_hour": false},
+  {"name": "Horas Total Oficina", "code": "HORAS_TOTAL_OFICINA", "account_codes": "", "type": "function", "function": "HORAS_EFECTIVAS_OFICINA * {office_employee}", "cost_hour": false},
 
   {"name": "Amortización Hora Taller", "code": "AMORTIZACION_HORA_TALLER", "account_codes": "", "type": "function", "function": "AMORTIZACION_TALLER / HORAS_TOTAL_TALLER", "cost_hour": false},
   {"name": "Amortización Hora Oficina", "code": "AMORTIZACION_HORA_OFICINA", "account_codes": "", "type": "function", "function": "AMORTIZACION_OFICINA / HORAS_TOTAL_OFICINA", "cost_hour": false},
@@ -96,7 +96,7 @@
   {"name": "Costes de Fabricación Modelo", "code": "COSTES_FABRICACION_MODELO", "account_codes": "", "type": "function", "function": "COSTES_PERSONAL_TALLER_MODELO + AMORTIZACION_TALLER_MODELO", "cost_hour": false},
   {"name": "Margen neto industrial Modelo", "code": "MARGEN_NETO_INDUSTRIAL_MODELO", "account_codes": "", "type": "function", "function": "MARGEN_CONTRIBUCION_MODELO + COSTES_FABRICACION_MODELO", "cost_hour": false},
   {"name": "Coste de personal Oficina Modelo", "code": "COSTE_PERSONAL_OFICINA_MODELO", "account_codes": "", "type": "function", "function": "PERSONAL_OFICINA", "cost_hour": false},
-  {"name": "Seguros Modelo", "code": "SEGUROS_MODELO", "account_codes": "625", "type": "standard", "function": "", "cost_hour": false},
+  {"name": "Seguros Modelo", "code": "SEGUROS_MODELO", "account_codes": "625", "type": "standard", "function": "", "cost_hour": true},
   {"name": "Amortización Oficina Modelo", "code": "AMORTIZACION_OFICINA_MODELO", "account_codes": "68", "type": "standard", "function": "", "cost_hour": false},
   {"name": "Gastos Generales Modelo", "code": "GASTOS_GENERALES_MODELO", "account_codes": "", "type": "function", "function": "GASTOS_NO_FABRICACION", "cost_hour": false},
   {"name": "Margen Neto Modelo", "code": "MARGEN_NETO_MODELO", "account_codes": "", "type": "function", "function": "MARGEN_NETO_INDUSTRIAL_MODELO + COSTE_PERSONAL_OFICINA_MODELO + SEGUROS_MODELO + AMORTIZACION_OFICINA_MODELO + GASTOS_GENERALES_MODELO", "cost_hour": false}

@@ -4,3 +4,4 @@ from . import account_indicator
 from . import account_amortisation_table_line
 from . import inventory_indicators
 from . import cost_model
+from . import account_indicator_manual_addition

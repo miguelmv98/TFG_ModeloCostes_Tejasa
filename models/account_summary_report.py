@@ -21,7 +21,7 @@ class InformeCostes(models.Model):
     industrial_hours = fields.Float(string="Horas/año trabajador taller", required=True)
     office_hours = fields.Float(string="Horas/año trabajador oficina", required=True)
     effective_hours = fields.Float(string="Horas efectivas registradas", required=True)
-    activity_level = fields.Float(string="Nivel de actividad", required=True)
+    activity_level = fields.Float(string="Nivel de actividad (%)", required=True)
 
 
     indicator_ids = fields.One2many('cp.account.indicator', 'report_id', string="Indicadores")
@@ -83,7 +83,7 @@ class InformeCostes(models.Model):
         fiscal_year = self.fiscal_year
 
         self.env.cr.execute("""
-                            SELECT base_account_code, final_balance
+                            SELECT base_account_code as codigo, final_balance as valor
                             FROM cp_account_balance_report
                             WHERE fiscal_year = %s
                             """, (fiscal_year,))
@@ -104,9 +104,9 @@ class InformeCostes(models.Model):
         for ind_config in [t for t in indicadores_config if t['type'] == 'standard']:
             valor = 0.0
             for acc in (ind_config['account_codes'] or '').split(','):
-                acc = acc.strip()
+                acc = str(acc).strip()
                 if acc:
-                    valor += sum(v for c, v in vista_data.items() if str(c).startswith(str(acc)))
+                    valor += sum(v for c, v in vista_data.items() if str(c).startswith(acc))
 
             ind = self.env['cp.account.indicator'].create({
                 'report_id': self.id,
@@ -145,15 +145,18 @@ class InformeCostes(models.Model):
             indicadores_creados[ind_config['code']] = ind
 
         # Calcular valor por hora si aplica
-        horas_taller_total = indicadores_creados["HORAS_TOTAL_TALLER"].value
-        for ind_config in [t for t in indicadores_config if t['cost_hour'] == True]:
-            ind = indicadores_creados[ind_config['code']]
-            if horas_taller_total:  # Evita división por cero
-                ind.write({'cost_hour_value': ind.value / horas_taller_total})
-            else:
-                ind.write({'cost_hour_value': 0.0})
+        horas_taller = indicadores_creados.get("HORAS_TOTAL_TALLER")
 
+        if horas_taller:
+            horas_taller_total = horas_taller.value
 
+            for ind_config in (t for t in indicadores_config if t.get('cost_hour')):
+                ind = indicadores_creados.get(ind_config.get('code'))
+                if ind:
+                    ind.write({'amount_hours': horas_taller_total})
+
+        indicadores_creados = self.env['cp.account.indicator'].browse()
+        indicadores_creados._recompute_recordset()
         return True
 
 

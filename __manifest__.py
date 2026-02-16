@@ -23,8 +23,7 @@
         "product",
         "stock",
         "account",
-        "stock_account",
-        "recursive_tree_view"
+        "stock_account"
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -43,6 +42,7 @@
         'wizard/cost_model_wizard_view.xml',
         'views/cost_model_views.xml',
         'views/cp_menu_views.xml',
+        'views/account_indicator_views.xml'
 ],
      "assets": {
          "web.assets_backend": [
