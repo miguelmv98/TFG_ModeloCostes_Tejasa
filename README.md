@@ -34,4 +34,4 @@ El proyecto está desarrollado como un **módulo instalable de Odoo**, siguiendo
 Para probar el módulo correctamente:
 
 1. Instalar Odoo en el sistema.
-2. Copiar el proyecto dentro de la carpeta:
+2. Copiar el proyecto dentro de la carpeta "extra-modules" dentro de la instalación de Odoo
